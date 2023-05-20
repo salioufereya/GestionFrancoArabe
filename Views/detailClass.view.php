@@ -17,58 +17,60 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
     <title>Breukh'School</title>
-
     <link href="css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
-            <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="index.html">
-                    <span class="align-middle">Breukh'School</span>
-                </a>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Menu
-                    </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="acccueil.html">
-                            <i class="align-middle" data-feather="sliders"></i> <span
-                                class="align-middle">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="classes.html">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Classe</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="eleves.html">
-                            <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Eleves</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="niveau.html">
-                            <i class="align-middle" data-feather="user-plus"></i> <span
-                                class="align-middle">Niveaux</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="annee.html">
-                            <i class="align-middle" data-feather="book"></i> <span class="align-middle">Année
-                                scolaire</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">Breukh'School</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Menu
+					</li>
+
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="acccueil.html">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="classes.html">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Classe</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="eleves.html">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Eleves</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="niveau.html">
+              <i class="align-middle" data-feather="list"></i> <span class="align-middle">Niveaux</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="annee.html">
+              <i class="align-middle" data-feather="clock"></i> <span class="align-middle">Année scolaire</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
                         <a class="sidebar-link" href="">
                             <i class="align-middle" data-feather="square"></i> <span class="align-middle">Titre3</span>
                         </a>
                     </li>
-                    
+                    <li class="sidebar-item">
+                        
+                    </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Titre4</span>
@@ -84,51 +86,28 @@
                         <a class="sidebar-link" href="">
                             <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Titre6</span>
                         </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                    </li>			
+				</ul>
+			</div>
+		</nav>
 
         <div class="main">
             <nav class="navbar navbar-expand navbar-light navbar-bg">
-                <a class="sidebar-toggle js-sidebar-toggle"></a>
-            </nav>
+				<a class="sidebar-toggle js-sidebar-toggle">
+					<i class="hamburger align-self-center"></i>
+				</a>
+			</nav>
 
             <main class="content">
 
-                <h1 class="">Trier par:</h1>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="cardSelect">
 
-                            <select>
-                                <option selected>Classes</option>
-                                <option value="1">CI</option>
-                                <option value="2">CP</option>
-                                <option value="3">SECONDE</option>
-                            </select>
-                            <select>
-                                <option selected>Niveaux</option>
-                                <option value="1">Elementaire</option>
-                                <option value="2">Secondaire</option>
-                                <option value="3">College</option>
-                            </select>
-                            <select>
-                                <option selected>Anneé inscription</option>
-                                <option value="1">2021</option>
-                                <option value="2">2022</option>
-                                <option value="3">2023</option>
-                            </select>
-                        </div>
 
-                    </div>
-                </div>
                 <div class="container-fluid p-0">
-                    <div class="divSearch">
-                        <input type="search" placeholder="Rechercher un étudiant">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button>
+                    <div class="titleAnnee">
+                        Liste des eleves inscrits dans la classe de CP2 <br>
+
+                       
                     </div>
 
 
@@ -136,8 +115,6 @@
                         <div class="col-12 col-lg-8 col-xxl-9 d-flex">
                             <div class="card flex-fill">
                                 <div class="card-header">
-
-                                    <h5 class="card-title mb-0">Secondaire</h5>
                                 </div>
                                 <table class="table table-hover my-0">
                                     <thead>
@@ -210,6 +187,9 @@
 
                                     </tbody>
                                 </table>
+
+
+
                             </div>
                         </div>
                         <div class="col-12 col-lg-4 col-xxl-3 d-flex">
@@ -238,69 +218,27 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Nouvel éleves</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Classe</h5>
                         </div>
                         <div class="modal-body">
 
                             <form>
-                                <!-- 2 column grid layout with text inputs for the first and last names -->
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">Nom</label>
-                                            <input type="text" id="form3Example1" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Prenom</label>
-                                            <input type="text" id="form3Example2" class="form-control" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">lieu de naissance</label>
-                                            <input type="text" id="form3Example1" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Sexe</label> <br>
-                                            <select name="" id="">
-                                                <option value="">M</option>
-                                                <option value="">F</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                               
-
                                 <!-- date input -->
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Date de naissance</label>
-                                    <input type="date" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Classe</label>
+                                    <input type="text" id="form3Example4" class="form-control" />
                                 </div>
-                                <!--Classe-->
+                                <!-- date input -->
                                 <div class="form-outline mb-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Classe</option>
-                                        <option value="1">CI</option>
-                                        <option value="2">CP</option>
-                                        <option value="3">CE1</option>
-                                    </select>
+                                    <label class="form-label" for="form3Example4">Scolarité</label>
+                                    <input type="text" id="form3Example4" class="form-control" />
                                 </div>
-                                <!--statut-->
+                                <!-- date input -->
                                 <div class="form-outline mb-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Statut</option>
-                                        <option value="1">Interne</option>
-                                        <option value="2">Externe</option>
+                                    <label class="form-label" for="form3Example4">Niveau</label>
+                                    <input type="text" id="form3Example4" class="form-control" />
+                                </div>
 
-                                    </select>
-                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">

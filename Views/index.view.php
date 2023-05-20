@@ -36,7 +36,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-	
+
 									<form>
 										<div class="mb-3">
 											<label class="form-label">Email</label>
@@ -47,10 +47,8 @@
 											<label class="form-label">Password</label>
 											<input class="form-control form-control-lg" type="password" name="password"
 												placeholder="Entrer votre password" />
-
 										</div>
 										<div>
-											
 										</div>
 										<div class="text-center mt-3">
 											<a href="acccueil.html" class="btn btn-lg btn-primary">Se connecter</a>
