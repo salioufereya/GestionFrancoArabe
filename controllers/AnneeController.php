@@ -1,8 +1,9 @@
 <?php
 
-require_once("../Models/AnneeScolaire.php");
+use Models\AnneeScolaire;
+use controllers\Controller;
 
- require_once("Controller.php");
+
 class AnneeController extends Controller
 {
     private $model;
@@ -12,41 +13,79 @@ class AnneeController extends Controller
     }
     public function selectAll()
     {
-        $recupDonnee = $this->model-> all();
-        echo json_encode($recupDonnee);
+        return $this->model->all();
     }
-    public function insert(array $data)
-    {
-      
-
-        $this->model->insert($data);
-
-    }
-    public function index()
-    {
-       require_once('../Views/acccueil.view.php');
-    }
-
     public function view()
     {
-      
-      $this->render('annee.view');
+        $annee = $this->selectAll();
+        $this->render('annee.view', ['annee' => $annee]);
     }
 
-    public function all()
+    // public function edite($item_id)
+    // {
+    //     $item=$this->model->find($item_id);
+    //     $this->render('edit_annee.view',  ['item' => $item]);
+    // }
+    public function create()
     {
-        $recupDonnee = $this->model-> all();
-        echo json_encode($recupDonnee);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['send'])) {
+                $libelle = $_POST['libelle'];
+                extract($_POST);
+                if ($this->model->yearIsVAlid($libelle)) {
+                    // Exécution de la requête SQL
+                    $test = $this->model->findMarqueByLibelle($libelle);
+                    if (!$test) {
+                        $this->model->insert($libelle);
+                        $_SESSION['success'] = "Ajout reussi";
+                        header('location:http://localhost:8000/Annee/view');
+                    } else {
+                        $_SESSION['error'] = "annee existe deja!";
+                        header('location:http://localhost:8000/Annee/view');
+                    }
+                } else {
+                    $_SESSION['error'] = "annee not valide!";
+                    header('location:http://localhost:8000/Annee/view');
+                }
+            }
+        }
     }
-    
+    public function lire($id)
+    {
+        echo $id;
+    }
+    public function edit($item_id)
+    {
+        if (isset($_POST['edit'])) {
+            $libelle = $_POST['libelle'];
+            if ($this->model->yearIsVAlid($libelle)) {
+                  if($this->model->findMarqueByLibelle($libelle)){
+                    $_SESSION['error'] = "l'annee existe deja!"; 
+                  }
+                  else
+                  {
+                    $this->model->update($libelle, $item_id);
+                  }   
+
+            }else
+            {
+                $_SESSION['error'] = "annee not valid!"; 
+            }
+            header('location:http://localhost:8000/Annee/view');
+        } else {
+            $item = $this->model->find($item_id);
+            $this->render('edit_annee.view',  ['item' => $item]);
+        }
+    }
+    public function delete($item_id)
+    {
+        if (isset($_POST['delete'])) {
+            $this->model->delete($item_id);
+            header('location:http://localhost:8000/Annee/view');
+            $_SESSION['success'] = "Supprimer avec success";
+        } else {
+            $item = $this->model->find($item_id);
+            $this->render('delete_annee.view', ['item' => $item]);
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-

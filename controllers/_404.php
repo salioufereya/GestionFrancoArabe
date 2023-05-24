@@ -5,7 +5,7 @@ class _404
 {
 	
 	
-	public function index()
+	public function view()
 	{
 		echo "404 Page not found controller";
 	}

@@ -1,70 +1,73 @@
 <?php
-class Classe
-{
-    private $id;
+
+namespace Models;
+
+use Models\Database;
+
+class Classe extends Database {
+    private $id_classe;
     private $nom;
     private $effectif;
-    private $idNiveau;
-    private $anneeScolaire;
-
-    public function __construct($id, $nom, $effectif, $idNiveau, $anneeScolaire)
-    {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->effectif = $effectif;
-        $this->idNiveau = $idNiveau;
-        $this->anneeScolaire = $anneeScolaire;
+    private $id_niveau;
+    
+    public function __construct() {
+        $this->id_classe ;
+        $this->nom  ;
+        $this->effectif ;
+        $this->id_niveau;
     }
-
-    // Getters et setters
-
-    public function getId()
-    {
-        return $this->id;
+    
+    // Getters
+    public function getIdClasse() {
+        return $this->id_classe;
     }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function getNom()
-    {
+    
+    public function getNom() {
         return $this->nom;
     }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    }
-
-    public function getEffectif()
-    {
+    
+    public function getEffectif() {
         return $this->effectif;
     }
-
-    public function setEffectif($effectif)
-    {
+    
+    public function getIdNiveau() {
+        return $this->id_niveau;
+    }
+    
+    // Setters
+    public function setIdClasse($id_classe) {
+        $this->id_classe = $id_classe;
+    }
+    
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+    
+    public function setEffectif($effectif) {
         $this->effectif = $effectif;
     }
-
-    public function getIdNiveau()
-    {
-        return $this->idNiveau;
+    
+    public function setIdNiveau($id_niveau) {
+        $this->id_niveau = $id_niveau;
     }
 
-    public function setIdNiveau($idNiveau)
+    public function insert(array $data)
     {
-        $this->idNiveau = $idNiveau;
+        $requete = " INSERT INTO Classe (nom, effectif, id_niveau)
+        VALUES (:nom, :effectif, :id_niveau)";
+        $statement = $this->getBdd()->prepare($requete);
+        $statement->execute($data);
     }
 
-    public function getAnneeScolaire()
+    public function all()
     {
-        return $this->anneeScolaire;
+        $sth = $this->getBdd()->prepare("SELECT * FROM Classe");
+        $sth->execute();
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function setAnneeScolaire($anneeScolaire)
-    {
-        $this->anneeScolaire = $anneeScolaire;
-    }
+
+
+
+
 }

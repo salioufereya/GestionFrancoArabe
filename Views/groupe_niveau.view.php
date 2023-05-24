@@ -7,7 +7,7 @@
 
                 <div class="container-fluid p-0">
                     <div class="titleAnnee">
-                        Liste des niveau <br>
+                        Liste des groupes niveau <br>
 
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button>
@@ -24,40 +24,25 @@
                                         <tr>
                                             <th>Detail</th>
                                             <th>Niveau</th>
-                                            <th class="d-none d-xl-table-cell">Scolarité</th>
                                             <th>Actions</th>
                                         </tr>
 
                                     </thead>
+
+
+                                   
                                     <tbody>
+                                    <?php foreach ($groupeNiveaux as $groupeNiveau): ?>
                                         <tr>
-                                            <td> @</td>
-                                            <td>Secondaire</td>
-                                            <th>10000</th>
-                                            <td><i class="fa-sharp fa-light fa-pen"></i>
-                                                <i class="fa-sharp fa-light fa-pencil"></i>
-                                                <i class="fa-sharp fa-light fa-pencil"></i>
+                                            <td> <i class="fa-solid fa-circle-info"></i></td>
+                                            <td> <?= $groupeNiveau['libelle'] ?></td>
+                                            <td>
+                                            <i class="fa-regular fa-trash-can"></i>
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                               
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td> @</td>
-                                            <td>Elementaire</td>
-                                            <th>5000</th>
-                                            <td><i class="fa-sharp fa-light fa-pen"></i>
-                                                <i class="fa-sharp fa-light fa-pencil"></i>
-                                                <i class="fa-sharp fa-light fa-pencil"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td> @</td>
-                                            <td>Secondaire</td>
-                                            <td>10000</td>
-                                            <td><i class="fa-sharp fa-light fa-pen"></i>
-                                                <i class="fa-sharp fa-light fa-pencil"></i>
-                                                <i class="fa-sharp fa-light fa-pencil"></i>
-                                            </td>
-                                        </tr>
-                                        
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -91,26 +76,18 @@
                             <h5 class="modal-title" id="exampleModalLabel">Niveau</h5>
                         </div>
                         <div class="modal-body">
-
-                            <form>
+                            <form method="POST" action="http://localhost:8000/GroupeNiveau/create">
                                 <!-- date input -->
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Niveau</label>
-                                    <input type="text" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4" >Groupe Niveau</label>
+                                    <input type="text" id="form3Example4" class="form-control" name="libelle" />
                                 </div>
-                                <!-- date input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Scolarité</label>
-                                    <input type="text" id="form3Example4" class="form-control" />
-                                </div>
-                               
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
+                                <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="button" class="btn btn-primary">Ajouter</button>
+                            <button type="submit" class="btn btn-primary" name="valider">Ajouter</button>
                         </div>
+                            </form>
+                        </div>     
                     </div>
                 </div>
             </div>

@@ -1,15 +1,15 @@
 <?php
 
-use Models\AnneeScolaire;
+use Models\Niveau;
 use controllers\Controller;
-use Models\Classe;
 
-class ClassController extends Controller
+
+class NiveauController extends Controller
 {
     private $model;
     public function __construct()
     {
-        $this->model = new Classe();
+        $this->model = new Niveau();
     }
     public function selectAll()
     {
@@ -18,17 +18,23 @@ class ClassController extends Controller
     }
     public function insert(array $data)
     {
+      
+
         $this->model->insert($data);
+
     }
-    public function index()
-    {
-       require_once('../Views/acccueil.view.php');
-    }
+   
 
     public function view()
     {
-      //require_once("../Views/annee/index.php");
-      $this->render('classe.view');
+      
+      $this->render('niveau.view');
+    }
+
+    public function all()
+    {
+        $recupDonnee = $this->model-> all();
+        echo json_encode($recupDonnee);
     }
     
 }

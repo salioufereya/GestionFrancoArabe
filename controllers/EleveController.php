@@ -2,7 +2,8 @@
 <?php
 
 
-require_once("Controller.php");
+use controllers\Controller;
+
 class EleveController extends Controller
 {
     public function salut()
@@ -11,7 +12,7 @@ class EleveController extends Controller
     }
     public function view()
     {
-      //  require_once("../Views/annee/index.php");
+    
       $this->render('eleves.view');
     }
 

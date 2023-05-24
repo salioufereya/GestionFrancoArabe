@@ -1,70 +1,88 @@
 <?php
 
-require_once("Database.php");
+namespace Models;
+
+use Models\Database;
+
 class AnneeScolaire extends Database
 {
 
-    private $id;
-    private $anneeScolaire;
-    private $dateDebut;
-    private $dateFin;
-
-    public function __construct()
-    {
-    }
+    private $id_AnneeScolaire;
+    private $libelle;
 
     // Getters et Setters pour chaque attribut
-    public function getId()
+    public function getid_AnneeScolaire()
     {
-        return $this->id;
+        return $this->id_AnneeScolaire;
     }
-    public function setId($id)
+    public function setid_AnneeScolaire($id_AnneeScolaire)
     {
-        $this->id = $id;
+        $this->id_AnneeScolaire = $id_AnneeScolaire;
     }
-
-    public function getAnneeScolaire()
+    public function getLibelle()
     {
-        return $this->anneeScolaire;
+        return $this->libelle;
     }
-
-    public function setAnneeScolaire($anneeScolaire)
+    public function setAnneeScolaire($libelle)
     {
-        $this->anneeScolaire = $anneeScolaire;
+        $this->libelle = $libelle;
     }
-
-    public function getDateDebut()
+    public function insert($libelle)
     {
-        return $this->dateDebut;
-    }
-
-    public function setDateDebut($dateDebut)
-    {
-        $this->dateDebut = $dateDebut;
+        $sql = "INSERT INTO AnneeScolaire (libelle) VALUES (:libelle)";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindParam(':libelle', $libelle);
+        return $sts->execute();
     }
 
-    public function getDateFin()
-    {
-        return $this->dateFin;
-    }
-
-    public function setDateFin($dateFin)
-    {
-        $this->dateFin = $dateFin;
-    }
-
-    public function insert(array $data)
-    {
-        $requete = " INSERT INTO AnneeScolaire (anneeScolaire, dateDebut, dateFin)
-        VALUES (:anneeScolaire, :dateDebut, :dateFin)";
-        $statement = $this->getBdd()->prepare($requete);
-        $statement->execute($data);
-    }
 
     public function all()
     {
         $sth = $this->getBdd()->prepare("SELECT * FROM AnneeScolaire");
         $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function findMarqueByLibelle($lib)
+    {
+        $sql = "SELECT * FROM AnneeScolaire WHERE libelle LIKE :lib";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':lib', '%' . $lib . '%');
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function find($id)
+    {
+        $sql = "SELECT * FROM AnneeScolaire WHERE id_AnneeScolaire = $id";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function update($lib, $id)
+{
+    $sql = "UPDATE AnneeScolaire SET libelle = :libelle WHERE id_AnneeScolaire = :id";
+    $sts = $this->getBdd()->prepare($sql);
+    $sts->bindValue(':libelle', $lib);
+    $sts->bindValue(':id', $id);
+    $sts->execute();
+}
+
+
+public function delete($id)
+{
+    $sql = "DELETE  FROM AnneeScolaire  WHERE id_AnneeScolaire = :id";
+    $sts = $this->getBdd()->prepare($sql);
+    $sts->bindValue(':id', $id);
+    $sts->execute();
+}
+
+
+
+    public function yearIsVAlid($lib)
+    {
+        $year = explode('-', $lib);
+        if ((int)$year[1] - (int)$year[0] == 1) return true;
+        else return false;
     }
 }

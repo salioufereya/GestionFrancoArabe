@@ -1,5 +1,6 @@
 <?php
 
+namespace Models;
 
 abstract class Database
 {
@@ -7,8 +8,8 @@ abstract class Database
 
     private static function setBdd()
     {
-        self::$pdo= new PDO("mysql:host=localhost;dbname=gestionFranco;charset=utf8","root","Di@lloODC5");
-        self::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+        self::$pdo= new \PDO("mysql:host=localhost;dbname=gestionFranco;charset=utf8","root","Di@lloODC5");
+        self::$pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_WARNING);
     }
     protected function getBdd()
     {
@@ -18,6 +19,25 @@ abstract class Database
         }
         return self::$pdo;
     }
+
+
+    public function getAll(string $table)
+    {
+        $sql="SELECT * FROM $table";
+        $sts = $this->getBdd()->prepare($sql);
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    // public function insert($table,array $data=[])
+    // {
+    //     $sql="INSERT INTO $table values () ";
+
+
+    //     for($i=0;$i<)
+
+    // }
+
+
 }
 
 

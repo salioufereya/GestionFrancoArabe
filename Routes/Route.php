@@ -1,5 +1,6 @@
 <?php
 
+namespace Routes;
 
 class Route
 {
@@ -8,13 +9,19 @@ class Route
 	private function splitURL()
 	{
 		$URL = $_SERVER['REQUEST_URI'] ?? 'home';
-		$URL = explode("/", trim($URL,"/"));
+		$URL = explode("/", trim($URL, "/"));
 		return $URL;
+		
 	}
 	public function loadController()
 	{
 		$URL = $this->splitURL();	
 		/** select controller **/
+
+		if(!$URL[0]){
+			require_once("../Views/index.view.php");
+			return;
+		}
 		$filename = "../controllers/".ucfirst($URL[0])."Controller".".php";
 		if(file_exists($filename))
 		{
@@ -37,7 +44,9 @@ class Route
 			if(method_exists($controller, $URL[1]))
 			{
 				$this->method = $URL[1];
-				$controller->$method();
+				unset($URL[0]);
+				unset($URL[1]);
+				call_user_func_array([$controller,$this->method], $URL);
 				return;
 			}else
 			{
@@ -45,7 +54,7 @@ class Route
 				return;
 			}
 		}
-	    	call_user_func_array([$controller,$this->method], $URL);
+	    	
 	}	
 
 }

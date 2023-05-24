@@ -1,13 +1,13 @@
-
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 	<meta name="keywords"
 		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
@@ -15,7 +15,8 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
 	<title>Breukh'School</title>
 
 	<link href="/css/app.css" rel="stylesheet">
@@ -34,7 +35,7 @@
 						Menu
 					</li>
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="acccueil.html">
+						<a class="sidebar-link" href="">
 							<i class="align-middle" data-feather="sliders"></i> <span
 								class="align-middle">Dashboard</span>
 						</a>
@@ -53,7 +54,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="http://localhost:8000/GroupeNiveau/view">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Niveaux</span>
+							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Groupe Niveaux</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
@@ -64,8 +65,8 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="">
-							<i class="align-middle" data-feather="square"></i> <span class="align-middle">Titre3</span>
+						<a class="sidebar-link" href="http://localhost:8000/Niveau/view">
+							<i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">Niveaux</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
@@ -130,8 +131,7 @@
 		</div>
 	</div>
 	<script src="/js/app.js"></script>
-
-
+	
 
 </body>
 
