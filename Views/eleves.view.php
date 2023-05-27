@@ -33,8 +33,7 @@
                 <div class="container-fluid p-0">
                     <div class="divSearch">
                         <input type="search" placeholder="Rechercher un étudiant">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button>
+                        <a type="button" class="btn btn-primary" href="/Eleve/createView">Ajouter</a>
                     </div>
 
 
@@ -137,84 +136,4 @@
             </main>
 
 
-            <!--Modal-->
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Nouvel éleves</h5>
-                        </div>
-                        <div class="modal-body">
-
-                            <form>
-                                <!-- 2 column grid layout with text inputs for the first and last names -->
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">Nom</label>
-                                            <input type="text" id="form3Example1" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Prenom</label>
-                                            <input type="text" id="form3Example2" class="form-control" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">lieu de naissance</label>
-                                            <input type="text" id="form3Example1" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Sexe</label> <br>
-                                            <select name="" id="">
-                                                <option value="">M</option>
-                                                <option value="">F</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                               
-
-                                <!-- date input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Date de naissance</label>
-                                    <input type="date" id="form3Example4" class="form-control" />
-                                </div>
-                                <!--Classe-->
-                                <div class="form-outline mb-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Classe</option>
-                                        <option value="1">CI</option>
-                                        <option value="2">CP</option>
-                                        <option value="3">CE1</option>
-                                    </select>
-                                </div>
-                                <!--statut-->
-                                <div class="form-outline mb-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Statut</option>
-                                        <option value="1">Interne</option>
-                                        <option value="2">Externe</option>
-
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="button" class="btn btn-primary">Ajouter</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Modal-->
            

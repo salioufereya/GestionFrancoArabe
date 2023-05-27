@@ -21,11 +21,7 @@ class AnneeController extends Controller
         $this->render('annee.view', ['annee' => $annee]);
     }
 
-    // public function edite($item_id)
-    // {
-    //     $item=$this->model->find($item_id);
-    //     $this->render('edit_annee.view',  ['item' => $item]);
-    // }
+   
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -60,16 +56,16 @@ class AnneeController extends Controller
             $libelle = $_POST['libelle'];
             if ($this->model->yearIsVAlid($libelle)) {
                   if($this->model->findMarqueByLibelle($libelle)){
-                    $_SESSION['error'] = "l'annee existe deja!"; 
+                   $_SESSION['error'] = "l'annee existe deja!";
                   }
                   else
                   {
                     $this->model->update($libelle, $item_id);
-                  }   
+                  }
 
             }else
             {
-                $_SESSION['error'] = "annee not valid!"; 
+            $_SESSION['error'] = "annee not valid!";
             }
             header('location:http://localhost:8000/Annee/view');
         } else {
@@ -88,4 +84,20 @@ class AnneeController extends Controller
             $this->render('delete_annee.view', ['item' => $item]);
         }
     }
+
+    public function activer($item_id)
+    {
+        if (isset($_POST['activer'])) {
+         $this->model->activer($item_id);
+         $this->model->desctiver($item_id);
+         header('location:http://localhost:8000/Annee/view');
+         $_SESSION['success'] = "Année activée";
+    }else
+    {
+        $item = $this->model->find($item_id);
+        $this->render('activer_annee.view',  ['item' => $item]);
+    }
+
+    }
+
 }

@@ -1,43 +1,47 @@
-  <!--Modal-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Classe</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <!-- date input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Classe</label>
-                                    <input type="text" id="form3Example4" class="form-control" />
-                                </div>
-                                <!-- date input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Effectif</label>
-                                    <input type="text" id="form3Example4" class="form-control" />
-                                </div>
-                                <!-- date input -->
-                                <!-- <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">Niveau</label>
-                                    <input type="text" id="form3Example4" class="form-control" />
-                                </div> -->
 
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="button" class="btn btn-primary">Ajouter</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Modal-->
+<!---->
+<style>
+    .vert {
+        color: green;
+    }
 
+    .black {
+        color: black;
+    }
+</style>
+<br>
+<div class="formALy">
+    <form class="row g-3" method="post" action="/Annee/create">
+        <div class="col-auto">
+            <label for="staticEmail2" class="visually-hidden">Classe</label>
+         <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="      Ajouter une classe">
+        </div>
+        <div class="col-auto">
+            <label class="visually-hidden">Classe</label>
+            <input type="text" class="form-control" id="inputPassword2" placeholder=" saisir la classe" name="classe">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3" name="send">Ajouter</button>
+        </div>
+    </form>
+</div>
 
+<?php
+if (isset($_SESSION['error'])) {
+    echo  "<div  class='text-danger'>";
 
+    echo  $_SESSION['error'];
 
+    echo "</div>";
+    unset($_SESSION['error']);
+} elseif (isset($_SESSION['success'])) {
+    echo  "<div  class='text-success'>";
+    echo $_SESSION['success'];
+    echo "</div>";
+    unset($_SESSION['success']);
+}
 
+?>
 
 
 <main class="content">

@@ -66,7 +66,7 @@ class Classe extends Database {
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-
+  
 
 
 

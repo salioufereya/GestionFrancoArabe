@@ -20,17 +20,20 @@ class ClassController extends Controller
     {
         $this->model->insert($data);
     }
-    public function index()
-    {
-       require_once('../Views/acccueil.view.php');
-    }
+   
 
     public function view()
     {
-      //require_once("../Views/annee/index.php");
+     
       $this->render('classe.view');
     }
     
+
+
+
+
+   
+
 }
 
 

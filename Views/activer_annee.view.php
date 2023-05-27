@@ -5,7 +5,7 @@
      foreach ($item as  $item) {
         echo $item['libelle'];
      }
-           
-    ?>" name="libelle" disabled>
-    <button type="submit" name="delete" class="btn btn-danger">Supprimer</button>
+            
+    ?>" name="libelle">
+    <button type="submit" name="activer" class="btn btn-primary">Activer</button>
 </form>

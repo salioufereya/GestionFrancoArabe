@@ -1,19 +1,55 @@
 
+<!---->
+<style>
+    .vert {
+        color: green;
+    }
 
+    .black {
+        color: black;
+    }
+</style>
+<br>
+<div class="formALy">
+    <form class="row g-3" method="post" action="/GroupeNiveau/create">
+        <div class="col-auto">
+            <label for="staticEmail2" class="visually-hidden">Groupe de niveau</label>
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="      Ajouter une groupe de niveau">
+        </div>
+        <div class="col-auto">
+            <label class="visually-hidden">Groupe de Niveau</label>
+            <input type="text" class="form-control" id="inputPassword2" placeholder=" saisir le groupe de niveau" name="libelle">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3" name="ajouter">Ajouter</button>
+        </div>
+    </form>
+</div>
+
+<?php
+if (isset($_SESSION['error'])) {
+    echo  "<div  class='text-danger'>";
+
+    echo  $_SESSION['error'];
+
+    echo "</div>";
+    unset($_SESSION['error']);
+} elseif (isset($_SESSION['success'])) {
+    echo  "<div  class='text-success'>";
+    echo $_SESSION['success'];
+    echo "</div>";
+    unset($_SESSION['success']);
+}
+
+?>
+<!---->
             <main class="content">
-
-
-
-
                 <div class="container-fluid p-0">
                     <div class="titleAnnee">
                         Liste des groupes niveau <br>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button>
+                       
                     </div>
-
-
                     <div class="row">
                         <div class="col-12 col-lg-8 col-xxl-9 d-flex">
                             <div class="card flex-fill">
@@ -27,10 +63,7 @@
                                             <th>Actions</th>
                                         </tr>
 
-                                    </thead>
-
-
-                                   
+                                    </thead>                
                                     <tbody>
                                     <?php foreach ($groupeNiveaux as $groupeNiveau): ?>
                                         <tr>
@@ -64,32 +97,4 @@
 
                 </div>
             </main>
-
-
-            <!--Modal-->
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Niveau</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="http://localhost:8000/GroupeNiveau/create">
-                                <!-- date input -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4" >Groupe Niveau</label>
-                                    <input type="text" id="form3Example4" class="form-control" name="libelle" />
-                                </div>
-                                <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="submit" class="btn btn-primary" name="valider">Ajouter</button>
-                        </div>
-                            </form>
-                        </div>     
-                    </div>
-                </div>
-            </div>
-            <!--Modal-->
            

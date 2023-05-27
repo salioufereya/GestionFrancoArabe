@@ -85,4 +85,22 @@ public function delete($id)
         if ((int)$year[1] - (int)$year[0] == 1) return true;
         else return false;
     }
+
+
+    public function activer($id)
+    {
+        $sql = "UPDATE AnneeScolaire SET status = 1 WHERE id_AnneeScolaire = :id";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':id', $id);
+        $sts->execute();
+    }
+
+
+    public function desctiver($id)
+    {
+        $sql = "UPDATE AnneeScolaire SET status = 0 WHERE id_AnneeScolaire != :id";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':id', $id);
+        $sts->execute();
+    }
 }

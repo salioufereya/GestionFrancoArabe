@@ -7,5 +7,5 @@
      }
             
     ?>" name="libelle">
-    <button type="submit" name="edit">modifier</button>
+    <button type="submit" name="edit" class="btn btn-primary">modifier</button>
 </form>

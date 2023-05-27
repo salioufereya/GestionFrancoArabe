@@ -14316,3 +14316,28 @@ margin-bottom: 10px;
     font-size: x-large;
     border-radius: 15px;
 }
+
+.formALy
+{
+    position: absolute;
+    left: 78%;
+}
+.modal
+{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    width: 50%;
+    height: 40%;
+    background-color: #001;
+    color: white;
+    display: none;
+}
+.modal h2{
+    color: white;
+}
+
+.fermer{
+    display: none;
+}

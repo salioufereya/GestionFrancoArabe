@@ -27,8 +27,9 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
-					<span class="align-middle">Breukh'School</span>
+				  <a class="sidebar-brand" href="">
+				  	<h2 style="color:white">Breukh'School</h2>
+					<img src="/images/logoBreukh.png"  height="60%" width="80%"  style="border-radius: 50%;"  />
 				</a>
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
@@ -131,6 +132,8 @@
 		</div>
 	</div>
 	<script src="/js/app.js"></script>
+	<script src="/js/script.js"></script>
+
 	
 
 </body>

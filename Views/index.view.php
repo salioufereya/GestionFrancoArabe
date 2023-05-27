@@ -1,3 +1,20 @@
+<?php
+if(isset($_SESSION["error"])){
+	echo $_SESSION["error"];
+	unset($_SESSION["error"]);
+}
+
+
+
+
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,10 +46,10 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<form>
+									<form  method="POST" action="/Login/login">
 										<div class="mb-3">
-											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email"
+											<label class="form-label"></label>
+											<input class="form-control form-control-lg" type="text" name="username" 
 												placeholder="Entrer votre email" />
 										</div>
 										<div class="mb-3">
@@ -43,7 +60,7 @@
 										<div>
 										</div>
 										<div class="text-center mt-3">
-											<a href="http://localhost:8000/Class/view" class="btn btn-lg btn-primary">Se connecter</a>
+											<button class="btn btn-lg btn-primary" type="submit" name="login">Se connecter</button>
 										</div>
 									</form>
 								</div>
