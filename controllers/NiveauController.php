@@ -36,7 +36,6 @@ class NiveauController extends Controller
         }
     }
 
-
     public function view()
     {
         $GroupeNiveau = $this->modelGroupNiveau->all();
@@ -44,11 +43,7 @@ class NiveauController extends Controller
         $this->render('niveau.view', ['GroupeNiveau' => $GroupeNiveau,'niveaux' => $niveaux]);
     }
 
-    // public function all()
-    // {
-    //     $recupDonnee = $this->model->all();
-    //     echo json_encode($recupDonnee);
-    // }
+    
 
 
     public function all($id)

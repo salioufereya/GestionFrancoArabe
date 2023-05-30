@@ -9,21 +9,7 @@
     }
 </style>
 <br>
-<div class="formALy">
-    <form class="row g-3" method="post" action="http://localhost:8000/Annee/create">
-        <div class="col-auto">
-            <label for="staticEmail2" class="visually-hidden">Email</label>
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="      Ajouter une année scolaire">
-        </div>
-        <div class="col-auto">
-            <label class="visually-hidden">Année scolaire</label>
-            <input type="text" class="form-control" id="inputPassword2" placeholder=" saisir l'année sous forme XXXX-YYYY" name="libelle">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3" name="send">Ajouter</button>
-        </div>
-    </form>
-</div>
+
 
 <?php
 if (isset($_SESSION['error'])) {
@@ -67,7 +53,7 @@ if (isset($_SESSION['error'])) {
                                 <tr>
                                     <td> <?= $annees['libelle'] ?></td>
                                     <td class="<?php echo $annees['status'] === 1 ? 'vert' : 'black'; ?>">
-                                        <?php echo $annees['status']; ?>
+                                        <?= $annees['status']; ?>
                                     </td>
                                     <td>
                                         <a href="http://localhost:8000/Annee/delete/<?= $annees['id_AnneeScolaire']; ?>">

@@ -76,4 +76,14 @@ class GroupeNiveau extends Database
         $sth->execute();
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function findGroupeNiveauById($id)
+    {
+        $sql = "SELECT libelle FROM GroupeNiveau WHERE id_groupeNiveau = :id";
+        $stmt = $this->getBdd()->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
 }

@@ -60,22 +60,22 @@ class AnneeScolaire extends Database
         return $sts->fetchAll(\PDO::FETCH_ASSOC);
     }
     public function update($lib, $id)
-{
-    $sql = "UPDATE AnneeScolaire SET libelle = :libelle WHERE id_AnneeScolaire = :id";
-    $sts = $this->getBdd()->prepare($sql);
-    $sts->bindValue(':libelle', $lib);
-    $sts->bindValue(':id', $id);
-    $sts->execute();
-}
+    {
+        $sql = "UPDATE AnneeScolaire SET libelle = :libelle WHERE id_AnneeScolaire = :id";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':libelle', $lib);
+        $sts->bindValue(':id', $id);
+        $sts->execute();
+    }
 
 
-public function delete($id)
-{
-    $sql = "DELETE  FROM AnneeScolaire  WHERE id_AnneeScolaire = :id";
-    $sts = $this->getBdd()->prepare($sql);
-    $sts->bindValue(':id', $id);
-    $sts->execute();
-}
+    public function delete($id)
+    {
+        $sql = "DELETE  FROM AnneeScolaire  WHERE id_AnneeScolaire = :id";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':id', $id);
+        $sts->execute();
+    }
 
 
 
@@ -102,5 +102,23 @@ public function delete($id)
         $sts = $this->getBdd()->prepare($sql);
         $sts->bindValue(':id', $id);
         $sts->execute();
+    }
+
+
+    public function EnCours()
+    {
+        $sql = "SELECT libelle FROM AnneeScolaire WHERE status = 1";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->execute();
+        $results = $sts->fetch(\PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function getIdByLibelle()
+    {
+        $sql = "SELECT id_AnneeScolaire FROM AnneeScolaire WHERE status = 1 ";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

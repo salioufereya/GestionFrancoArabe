@@ -12,6 +12,10 @@ class GroupeNiveauController extends Controller
     {
         $this->model = new GroupeNiveau();
     }
+
+
+   
+
     public function selectAll()
     {
         return $this->model->all();
@@ -21,20 +25,16 @@ class GroupeNiveauController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['ajouter'])) {
                 $libelle = $_POST['libelle'];
-                $test=$this->model->findGroupeNiveauByLibelle($libelle);
-                if(!$test)
-                {
-                    $this->model->insert($libelle);
-                    {
+                $test = $this->model->findGroupeNiveauByLibelle($libelle);
+                if (!$test) {
+                    $this->model->insert($libelle); {
                         $_SESSION['success'] = "ajout reussi";
                         header('location:/GroupeNiveau/view');
                     }
-                }else
-                {
+                } else {
                     $_SESSION['error'] = "Groupe Existe deja ";
-                     header('location:/GroupeNiveau/view');
+                    header('location:/GroupeNiveau/view');
                 }
-               
             }
         }
     }
@@ -45,22 +45,21 @@ class GroupeNiveauController extends Controller
 
     public function view()
     {
-        $GroupeNiveau = $this->selectAll();
-        $this->render('groupe_niveau.view', ['groupeNiveaux' => $GroupeNiveau]);
+        if ($this->login() == null) {
+            header('Location:/');
+            return;
+        } else {
+            $GroupeNiveau = $this->selectAll();
+            $this->render('groupe_niveau.view', ['groupeNiveaux' => $GroupeNiveau]);
+        }
     }
 
 
 
- public function all()
+    public function all()
     {
         $recupDonnee = $this->model->getAllNiveau();
-        $resulat=json_encode($recupDonnee);
+        $resulat = json_encode($recupDonnee);
         echo $resulat;
     }
-
-
-
 }
-
-
-

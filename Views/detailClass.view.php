@@ -40,7 +40,7 @@
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="classes.html">
+						<a class="sidebar-link" href="">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Classe</span>
             </a>
 					</li>

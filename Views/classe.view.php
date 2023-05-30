@@ -1,4 +1,3 @@
-
 <!---->
 <style>
     .vert {
@@ -10,21 +9,6 @@
     }
 </style>
 <br>
-<div class="formALy">
-    <form class="row g-3" method="post" action="/Annee/create">
-        <div class="col-auto">
-            <label for="staticEmail2" class="visually-hidden">Classe</label>
-         <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="      Ajouter une classe">
-        </div>
-        <div class="col-auto">
-            <label class="visually-hidden">Classe</label>
-            <input type="text" class="form-control" id="inputPassword2" placeholder=" saisir la classe" name="classe">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3" name="send">Ajouter</button>
-        </div>
-    </form>
-</div>
 
 <?php
 if (isset($_SESSION['error'])) {
@@ -41,18 +25,36 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['success']);
 }
 
+
+
 ?>
 
 
+
 <main class="content">
-    <div class="container-fluid p-0">
-        <div class="titleAnnee">
-            Liste des classes <br>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button>
-          
+    <div class="container-fluid p-0" style="position: relative;">
+
+        <div style="position: absolute; right:-3%; top:-10% ;font-size:xx-large;color:black">
+            <i class="fa-sharp fa-solid fa-plus" id="btnAdd"></i>
+            <form action="/Class/create/<?php $id = explode('/', $_SERVER['REQUEST_URI']);
+                                        echo  $id[3];
+                                        
+                                        
+                                        
+                                        
+                                        ?>" method="POST" style="  transform: translateY(-550%);" id="frm">
+                <div class="col d-flex">
+                    <input type="text" name="libelle" class="form-control" />
+                    <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
+                    <span class="btn btn-danger" id="btnClose"> Fermer</span>
+                </div>
+            </form>
         </div>
-
-
+        <div class="titleAnnee">
+            Les classes de <?php foreach ($groupe as $groupe):?>
+              <?= $groupe['libelle'] ?>
+            <?php endforeach; ?>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-8 col-xxl-9 d-flex">
                 <div class="card flex-fill">
@@ -61,46 +63,28 @@ if (isset($_SESSION['error'])) {
                     <table class="table table-hover my-0">
                         <thead>
                             <tr>
-                                <th>Detail</th>
+                                <th>Details</th>
                                 <th>Classe</th>
-                                <th class="d-none d-xl-table-cell">Effectif</th>
-                                <!-- <th class="d-none d-xl-table-cell">Niveau</th> -->
                                 <th>Actions</th>
                             </tr>
 
                         </thead>
                         <tbody>
-                            <tr>
-                                <td> <a href="detailClass.html">@</a></td>
-                                <td>CP</td>
-                                <td class="d-none d-xl-table-cell">10000</td>
-                                <!-- <td class="d-none d-xl-table-cell"> Elementaire</td> -->
-                                <td><i class="fa-sharp fa-light fa-pen"></i>
-                                    <i class="fa-sharp fa-light fa-pencil"></i>
-                                    <i class="fa-sharp fa-light fa-pencil"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> <a href="detailClass.html">@</a></td>
-                                <td>CP</td>
-                                <td class="d-none d-xl-table-cell">10000</td>
-                                <!-- <td class="d-none d-xl-table-cell"> Elementaire</td> -->
-                                <td><i class="fa-sharp fa-light fa-pen"></i>
-                                    <i class="fa-sharp fa-light fa-pencil"></i>
-                                    <i class="fa-sharp fa-light fa-pencil"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> <a href="detailClass.html">@</a></td>
-                                <td>CP</td>
-                                <td class="d-none d-xl-table-cell">10000</td>
-                                <!-- <td class="d-none d-xl-table-cell"> Elementaire</td> -->
-                                <td><i class="fa-sharp fa-light fa-pen"></i>
-                                    <i class="fa-sharp fa-light fa-pencil"></i>
-                                    <i class="fa-sharp fa-light fa-pencil"></i>
-                                </td>
-                            </tr>
 
+                            <?php foreach ($classes as $classe) :
+                            ?>
+                                <tr>
+                                    <td> <a href="/Eleve/view/<?= $classe['id_classe']  ?>"> <i class="fa-solid fa-circle-info"></i></a></td>
+                                    <td> <?= $classe['nom']; ?> </td>
+                                    <td>
+                                        <i class="fa-regular fa-trash-can"></i>
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </td>
+                                </tr>
+                            <?php 
+                          
+                        
+                        endforeach; ?>
                         </tbody>
                     </table>
                 </div>

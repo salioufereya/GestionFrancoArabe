@@ -9,7 +9,7 @@ class AnneeController extends Controller
     private $model;
     public function __construct()
     {
-        $this->model = new AnneeScolaire();
+        $this->model = new AnneeScolaire();   
     }
     public function selectAll()
     {
@@ -17,11 +17,15 @@ class AnneeController extends Controller
     }
     public function view()
     {
+        if( $this->login()==null){
+            header('Location:/');
+            return;
+        }
+      else{
         $annee = $this->selectAll();
         $this->render('annee.view', ['annee' => $annee]);
+      }
     }
-
-   
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -90,6 +94,8 @@ class AnneeController extends Controller
         if (isset($_POST['activer'])) {
          $this->model->activer($item_id);
          $this->model->desctiver($item_id);
+         $annee = $this->model->EnCours();
+         $_SESSION['annee'] = $annee ;
          header('location:http://localhost:8000/Annee/view');
          $_SESSION['success'] = "Année activée";
     }else

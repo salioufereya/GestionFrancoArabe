@@ -1,6 +1,11 @@
 <?php
 
-class Eleve 
+namespace Models;
+
+use Models\Database;
+
+
+class Eleve  extends Database
 {
     private $id;
     private $nom;
@@ -13,101 +18,167 @@ class Eleve
     private $classe;
     private $statut;
 
-    public function __construct($id, $nom, $prenom, $numero,
-    $dateNaissance, $type, $lieuNaissance, $sexe, $classe, $statut)
-    {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->numero = $numero;
-        $this->dateNaissance = $dateNaissance;
-        $this->type = $type;
-        $this->lieuNaissance = $lieuNaissance;
-        $this->sexe = $sexe;
-        $this->classe = $classe;
-        $this->statut = $statut;
-    }
+
 
     // Getters et setters
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getNom() {
+    public function getNom()
+    {
         return $this->nom;
     }
 
-    public function setNom($nom) {
+    public function setNom($nom)
+    {
         $this->nom = $nom;
     }
 
-    public function getPrenom() {
+    public function getPrenom()
+    {
         return $this->prenom;
     }
 
-    public function setPrenom($prenom) {
+    public function setPrenom($prenom)
+    {
         $this->prenom = $prenom;
     }
 
-    public function getNumero() {
+    public function getNumero()
+    {
         return $this->numero;
     }
 
-    public function setNumero($numero) {
+    public function setNumero($numero)
+    {
         $this->numero = $numero;
     }
 
-    public function getDateNaissance() {
+    public function getDateNaissance()
+    {
         return $this->dateNaissance;
     }
 
-    public function setDateNaissance($dateNaissance) {
+    public function setDateNaissance($dateNaissance)
+    {
         $this->dateNaissance = $dateNaissance;
     }
 
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
     }
 
-    public function getLieuNaissance() {
+    public function getLieuNaissance()
+    {
         return $this->lieuNaissance;
     }
 
-    public function setLieuNaissance($lieuNaissance) {
+    public function setLieuNaissance($lieuNaissance)
+    {
         $this->lieuNaissance = $lieuNaissance;
     }
 
-    public function getSexe() {
+    public function getSexe()
+    {
         return $this->sexe;
     }
 
-    public function setSexe($sexe) {
+    public function setSexe($sexe)
+    {
         $this->sexe = $sexe;
     }
 
-    public function getClasse() {
+    public function getClasse()
+    {
         return $this->classe;
     }
 
-    public function setClasse($classe) {
+    public function setClasse($classe)
+    {
         $this->classe = $classe;
     }
 
-    public function getStatut() {
+    public function getStatut()
+    {
         return $this->statut;
     }
 
-    public function setStatut($statut) {
+    public function setStatut($statut)
+    {
         $this->statut = $statut;
     }
+
+
+
+    public function insert($nom, $prenom, $dateNaissance, $lieuNaissance, $numero, $type, $id_classe, $photo, $sexe)
+    {
+        $requete = "INSERT INTO Eleve (nom, prenom, dateDeNaissance, lieuNaissance, Numero, type, id_classe, photo, sexe)
+                    VALUES (:nom, :prenom, :dateNaissance, :lieuNaissance, :numero, :type, :id_classe, :photo, :sexe)";
+        $stmt = $this->getBdd()->prepare($requete);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':dateNaissance', $dateNaissance);
+        $stmt->bindParam(':lieuNaissance', $lieuNaissance);
+        $stmt->bindParam(':numero', $numero);
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':id_classe', $id_classe);
+        $stmt->bindParam(':photo', $photo);
+        $stmt->bindParam(':sexe', $sexe);
+        return $stmt->execute();
+    }
+
+
+
+
+
+    public function findEleveByNumero($numero)
+    {
+        $sql = "SELECT * FROM Eleve WHERE numero = :numero";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':numero', $numero);
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getIdByNumero($numero)
+    {
+        $sql = "SELECT id_Eleve FROM Eleve WHERE numero LIKE :numero";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':numero', '%' . $numero . '%');
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function findEleveByIdClass($id_classe)
+    {
+        $sql = "SELECT * FROM Eleve WHERE id_classe = :id_classe";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':id_classe', $id_classe);
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function findClasseByIdClass($id_classe)
+    {
+        $sql = "SELECT nom FROM Classe WHERE id_classe = :id_classe";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':id_classe', $id_classe);
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
-?>

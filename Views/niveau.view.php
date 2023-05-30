@@ -17,7 +17,10 @@
                         <select name="selectedValue" class="form-control">
                             <option value="default">Choisir</option>
                             <?php foreach ($GroupeNiveau as $value) : ?>
-                                <option value="<?= $value['id_groupeNiveau']; ?>"><?= $value['libelle']; ?></option>
+                                <option value="<?= $value['id_groupeNiveau'];
+                              var_dump( $_SERVER['REQUEST_URI'] )  ;
+                                
+                                ?>"><?= $value['libelle']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -57,6 +60,8 @@ if (isset($_SESSION['error'])) {
     echo "</div>";
     unset($_SESSION['success']);
 }
+
+
 
 ?>
 

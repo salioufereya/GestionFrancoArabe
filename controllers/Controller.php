@@ -5,12 +5,10 @@ namespace controllers;
 
 abstract class Controller
 {
-
    public function loadModel(string $model)
    {
     require_once("../Models/".$model.'php');
    }
- 
    public function render(string $fichier,array $data=[])
    {
     extract($data);
@@ -22,5 +20,8 @@ abstract class Controller
    }
 
 
-
+    public function login()
+    {
+      return  $_SESSION['user_id'];
+    }
 }

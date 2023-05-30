@@ -10,21 +10,6 @@
     }
 </style>
 <br>
-<div class="formALy">
-    <form class="row g-3" method="post" action="/GroupeNiveau/create">
-        <div class="col-auto">
-            <label for="staticEmail2" class="visually-hidden">Groupe de niveau</label>
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="      Ajouter une groupe de niveau">
-        </div>
-        <div class="col-auto">
-            <label class="visually-hidden">Groupe de Niveau</label>
-            <input type="text" class="form-control" id="inputPassword2" placeholder=" saisir le groupe de niveau" name="libelle">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3" name="ajouter">Ajouter</button>
-        </div>
-    </form>
-</div>
 
 <?php
 if (isset($_SESSION['error'])) {
@@ -44,11 +29,25 @@ if (isset($_SESSION['error'])) {
 ?>
 <!---->
             <main class="content">
-                <div class="container-fluid p-0">
+                <div class="container-fluid p-0" style="position: relative;">
+                <div style="position: absolute; right:-3%; top:-10% ;font-size:xx-large;color:black">
+                <i class="fa-sharp fa-solid fa-plus"  id="btnAdd"></i>
+                <form action="/GroupeNiveau/create" method="post" style="  transform: translateY(-550%);" id="frm">
+                <div class="col d-flex">
+                <input type="text" name="libelle" class="form-control" />
+                <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button> 
+                <span class="btn btn-danger" id="btnClose"> Fermer</span>
+                </div>
+               
+                </form>
+           
+                
+                </div>
+               
                     <div class="titleAnnee">
-                        Liste des groupes niveau <br>
-
-                       
+                        Les niveaux  <br>
+                        
+                     
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-8 col-xxl-9 d-flex">
@@ -58,21 +57,24 @@ if (isset($_SESSION['error'])) {
                                 <table class="table table-hover my-0">
                                     <thead>
                                         <tr>
-                                            <th>Detail</th>
+                                            <th>Details</th>
                                             <th>Niveau</th>
                                             <th>Actions</th>
                                         </tr>
 
-                                    </thead>                
+                                    </thead>
                                     <tbody>
                                     <?php foreach ($groupeNiveaux as $groupeNiveau): ?>
                                         <tr>
-                                            <td> <i class="fa-solid fa-circle-info"></i></td>
-                                            <td> <?= $groupeNiveau['libelle'] ?></td>
+                                            <td>   <a href="/Class/view/<?= $groupeNiveau['id_groupeNiveau'];  ?>">
+                                            <i class="fa-solid fa-circle-info"></i></a></td>
+                                            <td> <?= $groupeNiveau['libelle'];
+                                             
+                                       
+                                            ?></td>
                                             <td>
                                             <i class="fa-regular fa-trash-can"></i>
                                             <i class="fa-regular fa-pen-to-square"></i>
-                                               
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
@@ -98,3 +100,8 @@ if (isset($_SESSION['error'])) {
                 </div>
             </main>
            
+            <script>
+               
+
+
+            </script>
