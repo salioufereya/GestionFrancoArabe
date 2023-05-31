@@ -28,14 +28,7 @@ abstract class Database
         return $sts->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    // public function insert($table,array $data=[])
-    // {
-    //     $sql="INSERT INTO $table values () ";
-
-
-    //     for($i=0;$i<)
-
-    // }
+   
 
 
 }

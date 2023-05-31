@@ -31,7 +31,14 @@ if (isset($_SESSION['error'])) {
 ?>
 <!---->
 <main class="content">
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0" style="position: relative;">
+
+        <div style="position: absolute; left:70%;top:-5%">
+            <form action="/Annee/create" method="POST">
+                <input type="text" name="libelle" placeholder="saisir l'année sous la forme xxxx-yyyy" >
+                <button type="submit" name="send" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
         <div class="titleAnnee">
             Liste des années d'entrées scolaire <br>
         </div>

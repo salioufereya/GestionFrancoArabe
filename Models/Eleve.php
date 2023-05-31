@@ -27,107 +27,24 @@ class Eleve  extends Database
         return $this->id;
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    }
-
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-    }
-
-    public function getNumero()
-    {
-        return $this->numero;
-    }
-
-    public function setNumero($numero)
-    {
-        $this->numero = $numero;
-    }
-
-    public function getDateNaissance()
-    {
-        return $this->dateNaissance;
-    }
-
-    public function setDateNaissance($dateNaissance)
-    {
-        $this->dateNaissance = $dateNaissance;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    public function getLieuNaissance()
-    {
-        return $this->lieuNaissance;
-    }
-
-    public function setLieuNaissance($lieuNaissance)
-    {
-        $this->lieuNaissance = $lieuNaissance;
-    }
-
-    public function getSexe()
-    {
-        return $this->sexe;
-    }
-
-    public function setSexe($sexe)
-    {
-        $this->sexe = $sexe;
-    }
-
-    public function getClasse()
-    {
-        return $this->classe;
-    }
-
-    public function setClasse($classe)
-    {
-        $this->classe = $classe;
-    }
-
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-    }
 
 
 
-    public function insert($nom, $prenom, $dateNaissance, $lieuNaissance, $numero, $type, $id_classe, $photo, $sexe)
-    {
-        $requete = "INSERT INTO Eleve (nom, prenom, dateDeNaissance, lieuNaissance, Numero, type, id_classe, photo, sexe)
-                    VALUES (:nom, :prenom, :dateNaissance, :lieuNaissance, :numero, :type, :id_classe, :photo, :sexe)";
+    public function insert(
+        $nom,
+        $prenom,
+        $dateNaissance,
+        $lieuNaissance,
+        $numero,
+        $type,
+        $id_classe,
+        $photo,
+        $sexe
+    ) {
+        $requete = "INSERT INTO Eleve (nom, prenom, dateDeNaissance,
+        lieuNaissance, Numero, type, id_classe, photo, sexe)
+                    VALUES (:nom, :prenom, :dateNaissance, :lieuNaissance,
+                     :numero, :type, :id_classe, :photo, :sexe)";
         $stmt = $this->getBdd()->prepare($requete);
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':prenom', $prenom);

@@ -21,47 +21,6 @@ class EleveController extends Controller
     $this->annee = new AnneeScolaire(); //
     $this->classe = new Classe();
   }
-  public function salut()
-  {
-    echo "eleve";
-  }
-
-  public function class($id)
-  {
-
-
-    return $this->classe->findClasseByIdClass($id);
-  }
-
-
-
-
-  public function view($id)
-  {
-    $ids = explode('/', $_SERVER['REQUEST_URI']);
-    $id = $ids[3];
-
-    if ($this->login() == null) {
-      header('Location:/');
-      return;
-    } else {
-      $eleves = $this->model->findEleveByIdClass($id);
-      $classe = $this->class($id);
-      $this->render('eleves.view', ['eleves' => $eleves, 'classe' => $classe]);
-    }
-  }
-
-
-  public function createView()
-  {
-
-
-    $this->render('add_eleve_view');
-  }
-  public function add()
-  {
-    $this->render('add_eleve_view');
-  }
 
 
   public function create($id)
@@ -107,15 +66,15 @@ class EleveController extends Controller
           if ($success) {
 
             $this->inscription->insert($annee, $eleve, $id_class);
-            header('location:/Eleve/View/' . $id);
+            header('location:/Class/liste/' . $id);
             $_SESSION['success'] = "ajout reussi";
           } else {
-            header('location:/Eleve/View/' . $id);
+            header('location:/Class/liste/' . $id);
             $_SESSION['error'] = "une erreur s'est produite";
           }
         } else {
           $_SESSION['error'] = "eleve existe deja";
-          header('location:/Eleve/View/' . $id);
+          header('location:/Class/liste/' . $id);
         }
       }
     }

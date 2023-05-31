@@ -25,7 +25,7 @@ class Routes
 
         call_user_func_array([$this->controller, $this->method],$this->params);
 
-        //    var_dump($url);
+      
     }
     private function parseURL()
     {

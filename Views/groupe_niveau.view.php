@@ -32,7 +32,7 @@ if (isset($_SESSION['error'])) {
                 <div class="container-fluid p-0" style="position: relative;">
                 <div style="position: absolute; right:-3%; top:-10% ;font-size:xx-large;color:black">
                 <i class="fa-sharp fa-solid fa-plus"  id="btnAdd"></i>
-                <form action="/GroupeNiveau/create" method="post" style="  transform: translateY(-550%);" id="frm">
+                <form action="/Niveau/create" method="post" style="  transform: translateY(-550%);" id="frm">
                 <div class="col d-flex">
                 <input type="text" name="libelle" class="form-control" />
                 <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button> 
@@ -64,12 +64,12 @@ if (isset($_SESSION['error'])) {
 
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($groupeNiveaux as $groupeNiveau): ?>
+                                    <?php foreach ($Niveaux as $Niveau): ?>
                                         <tr>
-                                            <td>   <a href="/Class/view/<?= $groupeNiveau['id_groupeNiveau'];  ?>">
+                                            <td>   <a href="/Niveau/classe/<?= $Niveau['id_Niveau'];  ?>">
                                             <i class="fa-solid fa-circle-info"></i></a></td>
-                                            <td> <?= $groupeNiveau['libelle'];
-                                             
+                                            <td> <?= $Niveau['libelle'];
+                                                   
                                        
                                             ?></td>
                                             <td>

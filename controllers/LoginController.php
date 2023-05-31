@@ -23,7 +23,7 @@ class LoginController extends Controller
             $_SESSION['user'] = $user['username'];
             $_SESSION['annee'] = $this->annee->EnCours();
             if ($user != null && ($_POST['password'] == $user['password'])) {
-                header('location:/GroupeNiveau/view');
+                header('location:/Niveau');
                 $_SESSION['user_id']=$user['id_user'];
               
             } else {

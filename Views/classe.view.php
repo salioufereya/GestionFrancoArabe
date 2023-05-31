@@ -74,7 +74,7 @@ if (isset($_SESSION['error'])) {
                             <?php foreach ($classes as $classe) :
                             ?>
                                 <tr>
-                                    <td> <a href="/Eleve/view/<?= $classe['id_classe']  ?>"> <i class="fa-solid fa-circle-info"></i></a></td>
+                                    <td> <a href="/Classe/liste/<?= $classe['id_classe']  ?>"> <i class="fa-solid fa-circle-info"></i></a></td>
                                     <td> <?= $classe['nom']; ?> </td>
                                     <td>
                                         <i class="fa-regular fa-trash-can"></i>

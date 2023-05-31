@@ -17,6 +17,9 @@ class Classe extends Database
         $this->nom;
         $this->effectif;
         $this->id_niveau;
+
+
+        
     }
 
     // Getters
@@ -61,13 +64,13 @@ class Classe extends Database
         $this->id_niveau = $id_niveau;
     }
 
-    public function insert($nom, $id_GroupeNiveaux)
+    public function insert($nom, $id_Niveaux)
     {
-        $requete = "INSERT INTO Classe (nom, id_groupeNiveaux)
-                    VALUES (:nom, :id_GroupeNiveaux)";
+        $requete = "INSERT INTO Classe (nom, id_Niveaux)
+                    VALUES (:nom, :id_Niveaux)";
         $sts = $this->getBdd()->prepare($requete);
         $sts->bindParam(':nom', $nom);
-        $sts->bindParam(':id_GroupeNiveaux', $id_GroupeNiveaux);
+        $sts->bindParam(':id_Niveaux', $id_Niveaux);
         return $sts->execute();
     }
 
@@ -82,8 +85,8 @@ class Classe extends Database
     {
         $sql = "SELECT *
         FROM Classe
-        JOIN GroupeNiveau ON GroupeNiveau.id_GroupeNiveau = Classe.id_groupeNiveaux
-        WHERE GroupeNiveau.id_GroupeNiveau = :id";
+        JOIN Niveau ON Niveau.id_Niveau = Classe.id_Niveaux
+        WHERE Niveau.id_Niveau = :id";
         $sth = $this->getBdd()->prepare($sql);
         $sth->bindValue(':id', $id);
         $sth->execute();

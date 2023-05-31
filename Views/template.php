@@ -53,7 +53,7 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="http://localhost:8000/GroupeNiveau/view">
+						<a class="sidebar-link" href="http://localhost:8000/Niveau/liste">
 							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Niveaux</span>
 						</a>
 					</li>
@@ -64,11 +64,11 @@
 						</a>
 					</li>
 
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link" href="http://localhost:8000/Niveau/view">
-							<i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">Niveaux</span>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/Discipline/gestion">
+							<i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">Gestion discipline</span>
 						</a>
-					</li> -->
+					</li>
 					<li class="sidebar-item">
 
 					</li>
@@ -108,9 +108,7 @@
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 
-						<li class="d-flex" >
-							
-								
+						<li class="d-flex" >								
 									<?php
 									echo '<h3>';
 									echo $_SESSION['user'];

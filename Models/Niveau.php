@@ -4,60 +4,25 @@ namespace Models;
 
 use Models\Database;
 
-
-class Niveau  extends Database
+class Niveau extends Database
 {
-    private $id_niveau;
+    private $id_Niveau;
     private $libelle;
-    private $id_groupeNiveau;
 
     public function __construct()
     {
-        $this->id_niveau;
+        $this->id_Niveau;
         $this->libelle;
-        $this->id_groupeNiveau;
     }
 
-    // Getters
-    public function getIdNiveau()
-    {
-        return $this->id_niveau;
-    }
 
-    public function getLibelle()
-    {
-        return $this->libelle;
-    }
 
-    public function getIdGroupeNiveau()
+    public function insert($libelle)
     {
-        return $this->id_groupeNiveau;
-    }
-
-    // Setters
-    public function setIdNiveau($id_niveau)
-    {
-        $this->id_niveau = $id_niveau;
-    }
-
-    public function setLibelle($libelle)
-    {
-        $this->libelle = $libelle;
-    }
-
-    public function setIdGroupeNiveau($id_groupeNiveau)
-    {
-        $this->id_groupeNiveau = $id_groupeNiveau;
-    }
-
-    public function insert($libelle, $id_groupeNiveau)
-    {
-        $sql = "INSERT INTO Niveau (libelle,id_groupeNiveau) VALUES (:libelle,:id_groupeNiveau)";
+        $sql = "INSERT INTO Niveau (libelle) VALUES (:libelle)";
         $sts = $this->getBdd()->prepare($sql);
         $sts->bindParam(':libelle', $libelle);
-        $sts->bindParam(':id_groupeNiveau', $id_groupeNiveau);
         $sts->execute();
-        return $sts->rowCount();
     }
 
     public function all()
@@ -67,14 +32,29 @@ class Niveau  extends Database
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function getNiveauByGroupeNiveau($id_GroupeNiveau)
+    public function findNiveauByLibelle($lib)
     {
-        $sql = "SELECT * FROM Niveau WHERE id_groupeNiveau = :id_groupeNiveau";
-        $sth = $this->getBdd()->prepare($sql);
-        $sth->bindParam(':id_groupeNiveau', $id_GroupeNiveau);
-        $sth->execute();
-        return $sth->fetchAll(\PDO::FETCH_ASSOC);
-       
+        $sql = "SELECT * FROM Niveau WHERE libelle LIKE :lib";
+        $sts = $this->getBdd()->prepare($sql);
+        $sts->bindValue(':lib', '%' . $lib . '%');
+        $sts->execute();
+        return $sts->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAllNiveau()
+    {
+        $sth = $this->getBdd()->prepare("SELECT * FROM Niveau");
+        $sth->execute();
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function findNiveauById($id)
+    {
+        $sql = "SELECT libelle FROM Niveau WHERE id_Niveau = :id";
+        $stmt = $this->getBdd()->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
 }
