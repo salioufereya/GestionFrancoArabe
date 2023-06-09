@@ -19,7 +19,6 @@ abstract class Controller
     require_once("../Views/template.php");
    }
 
-
     public function login()
     {
       return  $_SESSION['user_id'];

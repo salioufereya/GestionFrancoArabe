@@ -23,6 +23,14 @@ class EleveController extends Controller
   }
 
 
+
+  public function index()
+  {
+
+
+  //  return $this->render("add_eleve.view");
+  }
+
   public function create($id)
   {
 
@@ -66,7 +74,7 @@ class EleveController extends Controller
           if ($success) {
 
             $this->inscription->insert($annee, $eleve, $id_class);
-            header('location:/Class/liste/' . $id);
+            header('location:/Classe/liste/' . $id);
             $_SESSION['success'] = "ajout reussi";
           } else {
             header('location:/Class/liste/' . $id);

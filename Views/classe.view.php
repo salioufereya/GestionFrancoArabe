@@ -36,7 +36,7 @@ if (isset($_SESSION['error'])) {
 
         <div style="position: absolute; right:-3%; top:-10% ;font-size:xx-large;color:black">
             <i class="fa-sharp fa-solid fa-plus" id="btnAdd"></i>
-            <form action="/Class/create/<?php $id = explode('/', $_SERVER['REQUEST_URI']);
+            <form action="/Classe/create/<?php $id = explode('/', $_SERVER['REQUEST_URI']);
                                         echo  $id[3];
                                         
                                         

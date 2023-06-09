@@ -197,14 +197,14 @@
 
     }
     var id = null;
-    fetch("http://localhost:8000/GroupeNiveau/all")
+    fetch("http://localhost:8000/Niveau/all")
         .then(response => response.json())
         .then(response => {
             let data = response;
             console.log(typeof(data));
             console.log(data);
             chargerSelect(data, select, "Selectionner un niveau");
-            id = data['d_groupeNiveau'];
+            id = data['d_Niveau'];
 
         })
         .catch(error => alert("Erreur : " + error));
@@ -228,7 +228,7 @@
         donnee.forEach(d => {
             const option = creatingElement('option');
             option.innerHTML = d.libelle;
-            option.id = d.id_groupeNiveau;
+            option.id = d.id_Niveau;
             option.setAttribute('value', d.libelle);
             select.appendChild(option);
         });
@@ -240,23 +240,21 @@
         const option = creatingElement('option');
         option.innerHTML = label;
         select.appendChild(option);
-            classe.forEach(d => {
-                const option = creatingElement('option');
-                option.innerHTML = d.libelle;
-                option.setAttribute('value', d.libelle);
-                select.appendChild(option);
-            });
-        }
-    
+        classe.forEach(d => {
+            const option = creatingElement('option');
+            option.innerHTML = d.libelle;
+            option.setAttribute('value', d.libelle);
+            select.appendChild(option);
+        });
+    }
+
 
     select.addEventListener('change', function() {
-        const id=this.selectedOptions[0].id 
+        const id = this.selectedOptions[0].id
         console.log(id);
         fetch(`http://localhost:8000/Niveau/all/${id}`)
             .then(response => response.json())
             .then(response => {
-                
-           //   let  tableau = Object.keys(response).map(key => [key, response[key]]);
                 chargerSelection(response, selectClass, "Selectionner une classe");
             })
             .catch(error => alert("Erreur : " + error));

@@ -10,16 +10,12 @@ class Classe extends Database
     private $nom;
     private $effectif;
     private $id_niveau;
-
     public function __construct()
     {
         $this->id_classe;
         $this->nom;
         $this->effectif;
         $this->id_niveau;
-
-
-        
     }
 
     // Getters
@@ -94,19 +90,26 @@ class Classe extends Database
     }
 
 
-    public function findClassByLibelle($lib)
+    public function findClassByLibelle($nom, $annee)
     {
-        $sql = "SELECT * FROM Classe WHERE nom LIKE :lib";
+
+        $sql = "SELECT COUNT(*) AS count_class
+    FROM Classe c
+    INNER JOIN AnneeScolaireClasse an ON c.id_classe = an.id_Classe
+    INNER JOIN AnneeScolaire a ON an.id_AnneeScolaire = a.id_AnneeScolaire
+    WHERE c.nom = :lib
+      AND a.libelle = :annee";
         $sts = $this->getBdd()->prepare($sql);
-        $sts->bindValue(':lib', '%' . $lib . '%');
+        $sts->bindValue(':lib', $nom);
+        $sts->bindValue(':annee', $annee);
         $sts->execute();
-        return $sts->fetchAll(\PDO::FETCH_ASSOC);
+        return $sts->fetchColumn();
     }
 
 
     public function findClasseByIdClass($id_classe)
     {
-        $sql = "SELECT nom FROM Classe WHERE id_classe = :id_classe";
+        $sql = "SELECT * FROM Classe WHERE id_classe = :id_classe";
         $sts = $this->getBdd()->prepare($sql);
         $sts->bindValue(':id_classe', $id_classe);
         $sts->execute();
@@ -114,5 +117,35 @@ class Classe extends Database
     }
 
 
-   
+    public function  getClasseByIdGroupeNiveau($id)
+    {
+        $sql = "SELECT * FROM Classe WHERE id_niveaux = :id";
+        $sth = $this->getBdd()->prepare($sql);
+        $sth->bindValue(':id', $id);
+        $sth->execute();
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public function getIdClasseBylibelle($libelle)
+    {
+        $sql = "SELECT id_classe FROM Classe WHERE nom = :libelle";
+        $stmt = $this->getBdd()->prepare($sql);
+        $stmt->bindValue(':libelle', (int) $libelle);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function update($id_discipline, $ressource, $examen,$id)
+    {
+        $sql = "UPDATE ClasseDiscipline
+                SET ressource = :ressource,
+                    examen = :examen
+                WHERE id_discipline = :id_discipline AND id_classe = :id";
+        $stmt = $this->getBdd()->prepare($sql);
+        $stmt->bindParam(':id_discipline', $id_discipline, \PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindValue(':ressource', $ressource);
+        $stmt->bindValue(':examen', $examen);
+        $stmt->execute();
+        return true;
+    }
 }

@@ -103,20 +103,23 @@
 						echo $key;
 					}
 					echo ' </div>';
+
+
+
 					?>
 				</h1>
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 
-						<li class="d-flex" >								
-									<?php
-									echo '<h3>';
-									echo $_SESSION['user'];
-									echo '</h3>';
-									?>
-								
-								<a class="dropdown-item" href="/Login/logout"><i class="fa-solid fa-right-from-bracket" style="font-size: larger;"></i></a>
-							
+						<li class="d-flex">
+							<?php
+							echo '<h3>';
+							echo $_SESSION['user'];
+							echo '</h3>';
+							?>
+
+							<a class="dropdown-item" href="/Login/logout"><i class="fa-solid fa-right-from-bracket" style="font-size: larger;"></i></a>
+
 						</li>
 					</ul>
 				</div>

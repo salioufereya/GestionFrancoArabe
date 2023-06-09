@@ -103,8 +103,16 @@
         </div>
         <div class="titleAnnee">
             La liste des eleves de <?php foreach ($classe as $classe) : ?>
-                <?= $classe['nom'] ?>
+                <?= $classe['nom']; ?>
             <?php endforeach ?>
+
+            <div>
+              
+  
+           
+                <a href="/Classe/coef/<?= $id; ?>">Coefficient</a>
+
+            </div>
         </div>
         <i class="fa-sharp fa-solid fa-plus" id="btnAddE" style="position: absolute; right:20%; top:-5% ;font-size:xx-large;color:black; color:black"></i>
 
