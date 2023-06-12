@@ -63,11 +63,13 @@ if (isset($_SESSION['error'])) {
                                 <tr class="tr-ponderation">
                                     <td> <?= $key['libelle_discipline']; ?></td>
                                     <td> <input type="number" value="<?= $key['ressource'] ?>" id="ressource-<?= $key['id_discipline']; ?>" dataId="
-                                    <?= $key['id_discipline'] ?>">
+                                    <?= $key['id_discipline'] ?>" class="ressource">
                                     </td>
                                     <td> <input type="number" value="<?= $key['examen']; ?>" id="examen-<?= $key['id_discipline'] ?>" dataId="
-                                    <?= $key['id_discipline']; ?>"> </td>
-                                    <td class="idClasse"> <input type="text" value="  <?= $key['id_classe']; ?> "> </td>
+                                    <?= $key['id_discipline']; ?>" class="examen" min="10"> </td>
+
+                                    <td class="idClasse"> <input type="text" value="
+                                    <?= $key['id_classe']; ?> "> </td>
                                     <td style="display: none;"> <input type="text" value="<?= $key['id_discipline'] ?> "> </td>
                                     <td> <span class="delete" id="delete"> x </span></td>
                                 </tr>
@@ -90,6 +92,39 @@ if (isset($_SESSION['error'])) {
     let miseAjour = document.getElementById("miseAjour");
     let message = document.getElementById("message");
     let remove = document.querySelectorAll('.delete');
+
+    // check input
+
+    let inputeRessource = document.querySelectorAll('.ressource')
+    let inputeExamen = document.querySelectorAll('.examen')
+
+
+
+    function checkInput(inpute) {
+        inpute.forEach(e => {
+            e.addEventListener('keyup', () => {
+                if (e.value < 10) {
+                    e.style.color = "red";
+
+                } else {
+                    e.style.color = "green";
+                }
+            })
+
+        });
+    }
+    checkInput(inputeRessource);
+    checkInput(inputeExamen);
+
+    inputeExamen.forEach(element => {
+        element.addEventListener('change', () => {
+            if (element.value < 10) {
+                alert("not non valide");
+            }
+        });
+    });
+
+
     //event 
 
     miseAjour.addEventListener("click", async () => {
@@ -100,20 +135,23 @@ if (isset($_SESSION['error'])) {
             let inputExamen = tr.childNodes[5].childNodes[1];
             let idClasse = tr.childNodes[7].childNodes[1];
 
-            ponderations.push({
-                "id_discipline": inputRessource.getAttribute("dataId"),
-                "ressource": inputRessource.value,
-                "examen": inputExamen.value,
-                "classe": idClasse.value
-            })
+            if (inputExamen.value > 10) {
+                ponderations.push({
+                    "id_discipline": inputRessource.getAttribute("dataId"),
+                    "ressource": inputRessource.value,
+                    "examen": inputExamen.value,
+                    "classe": idClasse.value
+                })
+            }
+
         });
         postData(`http://localhost:8000/Classe/update`, {
             data: ponderations
         }).then((data) => {
             console.log(data); // JSON data parsed by `data.json()` call
-
-
         });
+
+
         /* function getRessource() {
             let ressource = document.querySelectorAll("input[dataId='1']");
             const Res = [];
@@ -170,6 +208,7 @@ if (isset($_SESSION['error'])) {
         }
 
 */
+
 
 
     })
@@ -249,7 +288,6 @@ if (isset($_SESSION['error'])) {
             }
 
         } catch (error) {
-
             if (errorMessage) {
                 console.error(errorMessage);
             }
@@ -269,28 +307,19 @@ if (isset($_SESSION['error'])) {
 
     remove.forEach(e => {
         e.addEventListener('click', () => {
-
             let classe_id = e.parentElement.parentElement.childNodes[7].childNodes[1].value;
             let discip_id = e.parentElement.parentElement.childNodes[9].childNodes[1].value;
-            console.log(classe_id);
-            console.log(discip_id);
-
-
-
+            let td = e.parentElement.parentElement;
+            td.remove();
             const datas = {
                 "id_discipline": discip_id,
                 "id_classeD": classe_id,
             };
-
-
             postDataSup(`http://localhost:8000/Discipline/delete1`, {
                 data: datas
             }).then((data) => {
                 console.log(data); // JSON data parsed by `data.json()` call
-
-
             });
-
             location.load();
         })
     });

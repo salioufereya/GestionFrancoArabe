@@ -115,7 +115,7 @@ class ClasseController extends Controller
         $data = file_get_contents("php://input");
 
         $ponderations = json_decode($data, true);
-
+         
         foreach ($ponderations['data'] as  $value) {
             $this->model->update((int)$value['id_discipline'], $value['ressource'], $value['examen'], $value['classe']);
         }
